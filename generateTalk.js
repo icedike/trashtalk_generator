@@ -1,3 +1,4 @@
+// pick task and phrase randomly
 function randomTaskNPhrase(job, task, phrase) {
   let trashTalk = '身為一個' + job + ','
   trashTalk += task[Math.floor((Math.random() * task.length))]
@@ -21,18 +22,32 @@ function generateTalk(option) {
     entrepreneur: '創業家'
   }
 
-  if (option.engineer === 'on') {
-    return randomTaskNPhrase(job.engineer, task.engineer, phrase)
+  let trashTalk = {
+    words: '',
+    engineer: '',
+    designer: '',
+    entrepreneur: ''
   }
 
-  if (option.designer === 'on') {
-    return randomTaskNPhrase(job.designer, task.designer, phrase)
+  // assign trash talk according to user's choice
+  switch (option.target) {
+    case 'engineer':
+      trashTalk.words = randomTaskNPhrase(job.engineer, task.engineer, phrase)
+      trashTalk.engineer = 'on'
+      break
+    case 'designer':
+      trashTalk.words = randomTaskNPhrase(job.designer, task.designer, phrase)
+      trashTalk.designer = 'on'
+      break
+    case 'entrepreneur':
+      trashTalk.words = randomTaskNPhrase(job.entrepreneur, task.entrepreneur, phrase)
+      trashTalk.entrepreneur = 'on'
+      break
+    default:
+      trashTalk.words = '你沒有選擇任何一個職業喔！'
+      break
   }
 
-  if (option.entrepreneur === 'on') {
-    return randomTaskNPhrase(job.entrepreneur, task.entrepreneur, phrase)
-  }
-
-  return '你沒有選擇任何一個職業喔！'
+  return trashTalk
 }
 module.exports = generateTalk
