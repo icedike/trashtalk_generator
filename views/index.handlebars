@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row justify-content-sm-center">
+  <div class="row justify-content-center">
     <div class="col-sm-auto">
       <h1>你想對誰說幹話？</h1>
     </div>
@@ -38,7 +38,14 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-success" type="submit">產生幹話</button>
+    <div class="d-flex flex-row">
+      <button class="btn btn-success mr-5" type="submit">產生幹話</button>
+      {{#if trashTalk}}
+      <div class="alert alert-info" role="alert">
+        <code>{{trashTalk}}</code>
+      </div>
+      {{/if}}
+    </div>
   </form>
 
 </div>

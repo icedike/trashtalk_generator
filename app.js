@@ -1,6 +1,7 @@
 const express = require('express')
 const exhbps = require('express-handlebars')
 const bodyParser = require('body-parser')
+const generateTalk = require('./generateTalk')
 
 const app = express()
 
@@ -15,8 +16,9 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-  console.log(req.body)
-  res.render('index')
+  const option = req.body
+  const trashTalk = generateTalk(option)
+  res.render('index', { trashTalk })
 })
 
 app.listen(port, () => {
